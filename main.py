@@ -59,7 +59,7 @@ class Graph:
     def PrintGraph(self):
         for i in self.graph : print(i,self.graph[i])
  
-
+'''
 g3 = Graph (7) 
 g3.addEdge(0, 1) 
 g3.addEdge(1, 2) 
@@ -82,6 +82,6 @@ print()
 print('graph without articulation points:')
 g3.Remove_articualtion_point(1)
 g3.PrintGraph()
-
+'''
 
 
