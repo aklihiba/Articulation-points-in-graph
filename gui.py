@@ -29,7 +29,7 @@ right_side_container = Frame(window)
 class App:
     def __init__(self, parent):
         self.parent = parent
-        self.canvas = Canvas(parent, width=669, height=639)
+        self.canvas = Canvas(parent, width=669, height=639 ,bg=_BACKGROUNDCOLOR)
         self.canvas.pack(side='top',padx = 20, pady = 20)
         self.sequence = [ImageTk.PhotoImage(img)
                             for img in ImageSequence.Iterator(
@@ -45,10 +45,11 @@ class App:
 gif = App(right_side_container)
 
 dfs_title = Label(right_side_container ,text="DFS Animation")
-dfs_title.config(font=('Arial' , 15))
+dfs_title.config(font=('Arial' , 25))
 dfs_title["bg"] = _BACKGROUNDCOLOR
-dfs_title.pack(side='bottom', padx = 20, pady = 20)
+dfs_title.pack(side='bottom', padx = 20, pady = 27)
 
+right_side_container['bg'] = _BACKGROUNDCOLOR
 right_side_container.pack(side='right')
 
 
