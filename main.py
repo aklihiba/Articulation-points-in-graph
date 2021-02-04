@@ -1,5 +1,7 @@
 from collections import defaultdict
-
+import graphviz as gv
+import networkx as nx
+import matplotlib.pyplot as plt
 
 class Graph:
     def __init__(self, nodes):
@@ -58,8 +60,22 @@ class Graph:
  
     def PrintGraph(self):
         for i in self.graph : print(i,self.graph[i])
+    
+    def DrawGraph(self):
+        G = nx.Graph()
+        for i in self.graph:
+            G.add_node(i)
+        for i in self.graph:  
+            for j in self.graph[i]:
+                G.add_edge(j, i)
+        nx.draw(G, with_labels=True, font_weight='bold')
+        #plt.savefig(file+".png")
+        plt.show()
+        plt.cla()
+    
+    
+    
  
-'''
 g3 = Graph (7) 
 g3.addEdge(0, 1) 
 g3.addEdge(1, 2) 
@@ -70,18 +86,11 @@ g3.addEdge(1, 6)
 g3.addEdge(3, 5) 
 g3.addEdge(4, 5)
 
-print("initial graph :") 
+
+
+
 g3.PrintGraph()
-print()
 
-print("Articulation points in the graph :")
-for i in g3.AP():
-    print(i)
-
-print()
-print('graph without articulation points:')
 g3.Remove_articualtion_point(1)
-g3.PrintGraph()
-'''
 
 

@@ -1,4 +1,4 @@
-from tkinter import Scale, Tk, Frame, Label, Button ,IntVar,PhotoImage,Canvas
+from tkinter import Scale, Tk, Frame, Label, Button ,IntVar,PhotoImage,Canvas,Toplevel
 from tkinter.ttk import Notebook, Entry
 import PIL 
 from PIL import ImageTk, Image,ImageSequence
@@ -14,7 +14,7 @@ _BACKGROUNDCOLOR_VARIANT = "#898590"
 
 window = Tk()
 window.title("Graph articulation points")
-window.geometry("1280x1000")
+window.geometry("1280x900")
 window["bg"] = _BACKGROUNDCOLOR
 window.resizable(False, False)
 
@@ -94,6 +94,30 @@ def get_values():
         initial_graph.addEdge(wt[i],val[i])
     
     initial_graph.PrintGraph()
+    initial_graph.DrawGraph()
+    
+    for i in initial_graph.AP():
+        initial_graph.Remove_articualtion_point(i)
+    
+    initial_graph.DrawGraph()
+    '''
+    newWindow = Toplevel(window) 
+    newWindow.title("New Window") 
+    newWindow.geometry("1280x720") 
+    
+    sack_image = ImageTk.PhotoImage(Image.open("first.png"))
+    sack = Label(newWindow, image = sack_image)
+    sack.pack(side='left',padx = 180)
+    
+    sack_image = ImageTk.PhotoImage(Image.open("sec.png"))
+    sack = Label(newWindow, image = sack_image)
+    sack.pack(side='right',padx = 180)
+    '''
+    
+    
+    
+    
+    
 
 
 
