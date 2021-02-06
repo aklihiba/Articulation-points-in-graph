@@ -28,6 +28,7 @@ class Graph:
             if visited[v] == False : 
                 parent[v] = u 
                 children += 1
+
                 self.APUtil(v, visited, ap, parent, low, disc) 
                 low[u] = min(low[u], low[v]) 
                 if parent[u] == -1 and children > 1: 
@@ -46,7 +47,7 @@ class Graph:
         low = [float("Inf")] * (self.V) 
         parent = [-1] * (self.V) 
         ap = [False] * (self.V)  
-        for i in range(self.V): 
+        for i in range(self.V ): 
             if visited[i] == False: 
                 self.APUtil(i, visited, ap, parent, low, disc) 
         for index, value in enumerate (ap): 
@@ -68,14 +69,46 @@ class Graph:
         for i in self.graph:  
             for j in self.graph[i]:
                 G.add_edge(j, i)
+            
+        
         nx.draw(G, with_labels=True, font_weight='bold')
-        #plt.savefig(file+".png")
-        plt.show()
-        plt.cla()
+        plt.figure(100)
+        #plt.show()
+        #plt.cla()
+        #plt.cla()
     
+    def Color(self):
+        G = nx.Graph()
+        for i in self.graph:
+            G.add_node(i)
+        for i in self.graph:  
+            for j in self.graph[i]:
+                G.add_edge(j, i)
+        
+        pos = nx.spring_layout(G, seed=3113794652)  # positions for all nodes
+        # nodes
+        options = {"edgecolors": "tab:gray", "node_size": 800, "alpha": 0.9}
+        nx.draw_networkx_nodes(G, pos, nodelist=list(G.nodes), node_color="tab:blue", **options)
+        nx.draw_networkx_nodes(G, pos, nodelist=self.AP(), node_color="tab:red", **options)
+        nx.draw_networkx_edges(G, pos, width=1.0, alpha=0.5)
     
-    
- 
+        nx.draw_networkx_edges(
+            G,
+            pos,
+            edgelist=list(G.edges),
+            width=3,
+            alpha=0.5,
+            edge_color="tab:blue",
+        )
+
+
+        plt.tight_layout()
+        plt.axis("off")
+        plt.figure(200)
+        #plt.cla()
+       
+
+
 g3 = Graph (7) 
 g3.addEdge(0, 1) 
 g3.addEdge(1, 2) 
@@ -84,13 +117,13 @@ g3.addEdge(1, 3)
 g3.addEdge(1, 4) 
 g3.addEdge(1, 6) 
 g3.addEdge(3, 5) 
-g3.addEdge(4, 5)
+g3.addEdge(4, 5) 
 
 
-
-
+"""
 g3.PrintGraph()
-
-g3.Remove_articualtion_point(1)
-
-
+g3.DrawGraph()
+g3.Color()
+"""
+print ("Articulation points in third graph ")
+print(g3.AP()) 

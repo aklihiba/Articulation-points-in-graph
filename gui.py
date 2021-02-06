@@ -4,6 +4,9 @@ import PIL
 from PIL import ImageTk, Image,ImageSequence
 from main import Graph
 
+import matplotlib.pyplot as plt
+
+
 
 '''
 _BACKGROUNDCOLOR = "#c3fdff"
@@ -90,35 +93,49 @@ def get_values():
 
     initial_graph = Graph(int(nombre_nodes_entry.get()))
 
+
+
     for i in range(n):
         initial_graph.addEdge(wt[i],val[i])
     
-    initial_graph.PrintGraph()
+    
     initial_graph.DrawGraph()
+
+    initial_graph.PrintGraph()
+    
+   
+    
+    initial_graph.Color()
+    plt.show()
+
+
+    newWindow = Toplevel(window) 
+    newWindow.title("point d'articulation") 
+    newWindow.geometry("200x200") 
+    
+    points = "les points d'articulation son : " + str(initial_graph.AP())
+    point = Label(newWindow, text=points).pack()
+    
+    """
+    initial_graph.V += 1
+    for i in initial_graph.AP():
+        print(i)
     
     for i in initial_graph.AP():
         initial_graph.Remove_articualtion_point(i)
     
     initial_graph.DrawGraph()
-    '''
-    newWindow = Toplevel(window) 
-    newWindow.title("New Window") 
-    newWindow.geometry("1280x720") 
-    
-    sack_image = ImageTk.PhotoImage(Image.open("first.png"))
-    sack = Label(newWindow, image = sack_image)
-    sack.pack(side='left',padx = 180)
-    
-    sack_image = ImageTk.PhotoImage(Image.open("sec.png"))
-    sack = Label(newWindow, image = sack_image)
-    sack.pack(side='right',padx = 180)
-    '''
-    
-    
-    
-    
+    """
     
 
+ 
+    
+
+
+    
+    
+    
+    
 
 
 def reset_table():
@@ -178,14 +195,6 @@ def print_table():
 
 button = Button(left_side_container, text="Ajouter les transitions", command=print_table)
 button.pack()
-
-
-
-
-
-
-
-
 
 
 window.mainloop()
