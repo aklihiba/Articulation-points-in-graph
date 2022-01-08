@@ -12,12 +12,12 @@ import matplotlib.pyplot as plt
 _BACKGROUNDCOLOR = "#c3fdff"
 _BACKGROUNDCOLOR_VARIANT = '#5adbee'
 '''
-_BACKGROUNDCOLOR = "#E5DEF1"
+_BACKGROUNDCOLOR = "#c95f5f"
 _BACKGROUNDCOLOR_VARIANT = "#898590"
 
 window = Tk()
 window.title("Graph articulation points")
-window.geometry("1280x900")
+window.geometry("600x900")
 window["bg"] = _BACKGROUNDCOLOR
 window.resizable(False, False)
 
@@ -27,33 +27,17 @@ title["bg"] = _BACKGROUNDCOLOR
 title.pack(padx = 20, pady = 20)
 
 
-right_side_container = Frame(window)
 
 class App:
     def __init__(self, parent):
         self.parent = parent
         self.canvas = Canvas(parent, width=669, height=639 ,bg=_BACKGROUNDCOLOR)
         self.canvas.pack(side='top',padx = 20, pady = 20)
-        self.sequence = [ImageTk.PhotoImage(img)
-                            for img in ImageSequence.Iterator(
-                                    Image.open(
-                                    r'dfsanimation.gif'))]
-        self.image = self.canvas.create_image(350,350, image=self.sequence[0])
-        self.animate(1)
-    def animate(self, counter):
-        self.canvas.itemconfig(self.image, image=self.sequence[counter])
-        self.parent.after(20, lambda: self.animate((counter+1) % len(self.sequence)))
+       
 
 
-gif = App(right_side_container)
 
-dfs_title = Label(right_side_container ,text="DFS Animation")
-dfs_title.config(font=('Arial' , 25))
-dfs_title["bg"] = _BACKGROUNDCOLOR
-dfs_title.pack(side='bottom', padx = 20, pady = 27)
 
-right_side_container['bg'] = _BACKGROUNDCOLOR
-right_side_container.pack(side='right')
 
 
 
@@ -65,7 +49,7 @@ nodes = Frame(left_side_container)
 
 nombre_nodes_label = Label(nodes, text='Nombre de noeuds : ').pack(side="left")
 nombre_nodes_entry = Entry(nodes)
-nombre_nodes_entry.pack(side="right",padx=5 , pady = 5)
+nombre_nodes_entry.pack(side="right",padx=10 , pady = 5)
 
 nodes.pack()
 
@@ -73,7 +57,7 @@ arc = Frame(left_side_container)
 
 nombre_arc_label = Label(arc, text="Nombre d'arc : ").pack(side="left")
 nombre_arc_entry = Entry(arc)
-nombre_arc_entry.pack(side="right",padx=5 , pady = 5)
+nombre_arc_entry.pack(side="right",padx=10 , pady = 5)
 arc.pack()
 
 
